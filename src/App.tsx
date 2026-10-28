@@ -2,15 +2,19 @@
 // Start with tickets/day-1/1.1-product-type-and-card.md
 import { products } from "./data/products";
 import { ProductGrid } from "./components/ProductGrid";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 
 
 function App() {
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
-      <h1 className="text-3xl font-bold">SummitGear Market</h1>
-      <p className="text-gray-600">Open the tickets folder to get started.</p>
-      <ProductGrid products={products} />
-    </main>
+    <body>
+      <Navbar />
+      <main className="min-h-screen bg-gray-50 p-8">
+        <ProductGrid products={products} />
+      </main>
+      < Footer />
+    </body>
   );
 }
 
