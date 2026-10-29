@@ -4,6 +4,7 @@ import { products } from "./data/products";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ProductSection } from "./components/ProductSection";
+import { EmptyState } from "./components/EmptyState";
 
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
     .filter(product => product.rating >= 4.5 && product.stock > 0)
     .sort((a, b) => b.rating - a.rating);
   const furniture = products.filter(product => product.category === "furniture");
-  
+  const luxury = products.filter(product => product.price > 5000);
+
   return (
     <body>
       <Navbar />
@@ -31,6 +33,18 @@ function App() {
           title="Furniture"
           products={furniture}
         />
+
+        {luxury.length === 0 ?
+        <EmptyState message={
+          <p className="text-center">
+            This is the first line.<br/>
+            This is the second line.
+          </p>
+        }/> :
+        <ProductSection
+          title="Luxury (over $5,000)"
+          products={luxury}
+        />}
       </main>
       < Footer />
     </body>
