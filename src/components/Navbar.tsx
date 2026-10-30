@@ -19,7 +19,7 @@ export function Navbar() {
       <p className="text-2xl font-bold text-[#006b1d]">🍀 SummitGear Market</p>
       <div>
         {links.map((link) => (
-          <a className="p-3" href={link.href}>
+          <a key={link.label} className="p-3" href={link.href}>
             {link.label}
           </a>
         ))}
