@@ -4,7 +4,6 @@ import { products } from "./data/products";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ProductSection } from "./components/ProductSection";
-import { EmptyState } from "./components/EmptyState";
 
 
 function App() {
@@ -34,17 +33,10 @@ function App() {
           products={furniture}
         />
 
-        {luxury.length === 0 ?
-        <EmptyState message={
-          <p className="text-center">
-            This is the first line.<br/>
-            This is the second line.
-          </p>
-        }/> :
         <ProductSection
           title="Luxury (over $5,000)"
           products={luxury}
-        />}
+        />
       </main>
       < Footer />
     </body>
