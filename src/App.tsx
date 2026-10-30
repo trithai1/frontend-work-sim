@@ -4,6 +4,7 @@ import { products } from "./data/products";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ProductSection } from "./components/ProductSection";
+import { StatsBar } from "./components/StatsBar";
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
   return (
     <body>
       <Navbar />
-      <main className="min-h-screen bg-gray-50 p-8">
+      <main className="min-h-screen bg-gray-200 p-8">
+        <StatsBar products={products} />
         <ProductSection
           title="Deals under $20"
           products={under20}
