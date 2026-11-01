@@ -13,7 +13,8 @@ import { EmptyState } from "./components/EmptyState";
 
 function App() {
   const [search, setSearch] = useState("");
-  const [theme, setTheme] = useState("dark");
+  const [favorites, setFavorites] = useState<number[]>([]);
+  const [theme, setTheme] = useState("light");
   const searchProducts = search === "" ? null : products.filter(product => product.title.includes(search));
 
   const under20 = products.filter(product => product.price < 20);
@@ -43,16 +44,22 @@ function App() {
           <ProductSection
             title="Deals under $20"
             products={under20}
+            favorites={favorites}
+            setFavorites={setFavorites}
           />
 
           <ProductSection
             title="Top Rated"
             products={topRated}
+            favorites={favorites}
+            setFavorites={setFavorites}
           />
 
           <ProductSection
             title="Luxury (over $5,000)"
             products={luxury}
+            favorites={favorites}
+            setFavorites={setFavorites}
           />
 
           <p className="font-bold text-2xl m-2 text-main-label">Shop by Category</p>
@@ -61,6 +68,8 @@ function App() {
             <ProductSection key={category}
               title={category}
               products={products}
+              favorites={favorites}
+              setFavorites={setFavorites}
             />
           ))}
         </>}
@@ -69,6 +78,8 @@ function App() {
           <ProductSection
             title=""
             products={searchProducts}
+            favorites={favorites}
+            setFavorites={setFavorites}
           />}
         
         {searchProducts !== null && searchProducts.length === 0 && <EmptyState message={

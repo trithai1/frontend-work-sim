@@ -1,14 +1,17 @@
 import type { Product } from "../types/product";
 import { EmptyState } from "./EmptyState";
 import { ProductGrid } from "./ProductGrid";
+import type { Dispatch } from "react";
 
 
 type Section = {
   title: string;
   products: Product[];
+  favorites: number[];
+  setFavorites: Dispatch<React.SetStateAction<number[]>>;
 };
 
-export function ProductSection({ title, products }: Section) {
+export function ProductSection({ title, products, favorites, setFavorites }: Section) {
   return (
     <div>
       <div>
@@ -21,7 +24,11 @@ export function ProductSection({ title, products }: Section) {
               <p className="mb-10 m-1 text-empty-info">Nothing matches this section. Check back soon!</p>
             </div>
           }
-          /> : <ProductGrid products={products} />
+          /> : <ProductGrid
+            products={products}
+            favorites={favorites}
+            setFavorites={setFavorites}
+          />
         }
       </div>
     </div>
