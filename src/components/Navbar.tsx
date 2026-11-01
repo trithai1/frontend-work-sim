@@ -1,4 +1,4 @@
-export function Navbar() {
+export function Navbar({theme, toggleTheme}: {theme: string, toggleTheme: () => void}) {
   const links = [
     {
       label: "Shop",
@@ -23,6 +23,7 @@ export function Navbar() {
             {link.label}
           </a>
         ))}
+        <button className="bg-product-bg p-1 px-2 rounded-md border-1 border-solid border-sub-label" onClick={toggleTheme}>{theme === "dark" ? "🌙" : "☀️"}</button>
       </div>
     </div>
   );

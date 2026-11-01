@@ -13,6 +13,7 @@ import { EmptyState } from "./components/EmptyState";
 
 function App() {
   const [search, setSearch] = useState("");
+  const [theme, setTheme] = useState("dark");
   const searchProducts = search === "" ? null : products.filter(product => product.title.includes(search));
 
   const under20 = products.filter(product => product.price < 20);
@@ -22,16 +23,21 @@ function App() {
   const luxury = products.filter(product => product.price > 5000);
   const categoryProducts = groupByCategory(products);
 
+  function toggleTheme() {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+  }
+
   return (
-    <>
-      <Navbar />
+    <div className={theme === "dark" ? "dark" : ""}>
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main className="min-h-screen bg-page-bg p-8">
         <SearchBar
           setSearch={setSearch}
           searchProducts={searchProducts}
           products={products}
         />
-        { searchProducts === null &&
+        {searchProducts === null &&
         <>
           <StatsBar products={products} />
           <ProductSection
@@ -49,7 +55,7 @@ function App() {
             products={luxury}
           />
 
-          <p className="font-bold text-2xl m-2">Shop by Category</p>
+          <p className="font-bold text-2xl m-2 text-main-label">Shop by Category</p>
 
           {Object.entries(categoryProducts).map(([category, products]) => (
             <ProductSection key={category}
@@ -68,13 +74,13 @@ function App() {
         {searchProducts !== null && searchProducts.length === 0 && <EmptyState message={
             <div>
               <p className="mt-10 m-1 text-5xl">🔍</p>
-              <p className="m-1 font-bold">No product found</p>
+              <p className="m-1 font-bold text-main-label">No product found</p>
               <p className="mb-10 m-1 text-empty-info">Nothing matches "{search}". Try a different search.</p>
             </div>
           }/>}
       </main>
       < Footer />
-    </>
+    </div>
   );
 }
 
