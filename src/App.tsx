@@ -6,9 +6,15 @@ import { Footer } from "./components/Footer";
 import { ProductSection } from "./components/ProductSection";
 import { StatsBar } from "./components/StatsBar";
 import { groupByCategory } from "./utils/groupByCategory";
+import { SearchBar } from "./components/SearchBar";
+import { useState } from "react";
+import { EmptyState } from "./components/EmptyState";
 
 
 function App() {
+  const [search, setSearch] = useState("");
+  const searchProducts = search === "" ? null : products.filter(product => product.title.includes(search));
+
   const under20 = products.filter(product => product.price < 20);
   const topRated = products
     .filter(product => product.rating >= 4.5 && product.stock > 0)
@@ -20,30 +26,51 @@ function App() {
     <>
       <Navbar />
       <main className="min-h-screen bg-gray-200 p-8">
-        <StatsBar products={products} />
-        <ProductSection
-          title="Deals under $20"
-          products={under20}
+        <SearchBar
+          setSearch={setSearch}
+          searchProducts={searchProducts}
+          products={products}
         />
-
-        <ProductSection
-          title="Top Rated"
-          products={topRated}
-        />
-
-        <ProductSection
-          title="Luxury (over $5,000)"
-          products={luxury}
-        />
-
-        <p className="font-bold text-2xl m-2">Shop by Category</p>
-
-        {Object.entries(categoryProducts).map(([category, products]) => (
-          <ProductSection key={category}
-            title={category}
-            products={products}
+        { searchProducts === null &&
+        <>
+          <StatsBar products={products} />
+          <ProductSection
+            title="Deals under $20"
+            products={under20}
           />
-        ))}
+
+          <ProductSection
+            title="Top Rated"
+            products={topRated}
+          />
+
+          <ProductSection
+            title="Luxury (over $5,000)"
+            products={luxury}
+          />
+
+          <p className="font-bold text-2xl m-2">Shop by Category</p>
+
+          {Object.entries(categoryProducts).map(([category, products]) => (
+            <ProductSection key={category}
+              title={category}
+              products={products}
+            />
+          ))}
+        </>}
+
+        {searchProducts !== null && searchProducts.length > 0 ?
+          <ProductSection
+            title=""
+            products={searchProducts}
+          /> :
+          <EmptyState message={
+            <div>
+              <p className="mt-10 m-1 text-5xl">🔍</p>
+              <p className="m-1 font-bold">No product found</p>
+              <p className="mb-10 m-1 text-gray-500">Nothing matches "{search}". Try a different search.</p>
+            </div>
+          }/>}
       </main>
       < Footer />
     </>
