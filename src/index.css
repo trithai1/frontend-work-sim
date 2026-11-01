@@ -7,4 +7,9 @@
   --color-main-label: black;
   --color-brand-green: #006b1d;
   --color-brand-brown: #b3480e;
+  --color-label-bg: white;
+  --color-page-bg: var(--color-gray-200);
+  --color-empty-dash: var(--color-gray-400);
+  --color-empty-info: var(--color-gray-500);
+  --color-product-bg: #f2f2f2;
 }

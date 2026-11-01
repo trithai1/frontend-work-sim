@@ -15,7 +15,7 @@ export function Navbar() {
   ];
 
   return (
-    <div className="sticky top-0 shadow-md flex justify-between p-5 bg-white/92">
+    <div className="sticky top-0 shadow-md flex justify-between p-5 bg-label-bg/92">
       <p className="text-2xl font-bold text-brand-green">🍀 SummitGear Market</p>
       <div>
         {links.map((link) => (

@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-200 p-8">
+      <main className="min-h-screen bg-page-bg p-8">
         <SearchBar
           setSearch={setSearch}
           searchProducts={searchProducts}
@@ -69,7 +69,7 @@ function App() {
             <div>
               <p className="mt-10 m-1 text-5xl">🔍</p>
               <p className="m-1 font-bold">No product found</p>
-              <p className="mb-10 m-1 text-gray-500">Nothing matches "{search}". Try a different search.</p>
+              <p className="mb-10 m-1 text-empty-info">Nothing matches "{search}". Try a different search.</p>
             </div>
           }/>}
       </main>

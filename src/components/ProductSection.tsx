@@ -18,7 +18,7 @@ export function ProductSection({ title, products }: Section) {
             <div>
               <p className="mt-10 m-1 text-5xl">🛍️</p>
               <p className="m-1 font-bold">No product here yet</p>
-              <p className="mb-10 m-1 text-gray-500">Nothing matches this section. Check back soon!</p>
+              <p className="mb-10 m-1 text-empty-info">Nothing matches this section. Check back soon!</p>
             </div>
           }
           /> : <ProductGrid products={products} />
