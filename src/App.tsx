@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <Navbar theme={theme} toggleTheme={toggleTheme} favorites={favorites}/>
       <main className="min-h-screen bg-page-bg p-8">
         <SearchBar
           setSearch={setSearch}

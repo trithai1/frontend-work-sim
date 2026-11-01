@@ -1,11 +1,15 @@
-export function Navbar({theme, toggleTheme}: {theme: string, toggleTheme: () => void}) {
+export function Navbar({theme, toggleTheme, favorites}: {
+  theme: string;
+  toggleTheme: () => void;
+  favorites: number[];
+}) {
   const links = [
     {
       label: "Shop",
       href: "/shop",
     },
     {
-      label: "Favorites",
+      label: `Favorites (${favorites.length})`,
       href: "/favorites",
     },
     {
