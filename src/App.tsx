@@ -59,12 +59,13 @@ function App() {
           ))}
         </>}
 
-        {searchProducts !== null && searchProducts.length > 0 ?
+        {searchProducts !== null && searchProducts.length > 0 &&
           <ProductSection
             title=""
             products={searchProducts}
-          /> :
-          <EmptyState message={
+          />}
+        
+        {searchProducts !== null && searchProducts.length === 0 && <EmptyState message={
             <div>
               <p className="mt-10 m-1 text-5xl">🔍</p>
               <p className="m-1 font-bold">No product found</p>

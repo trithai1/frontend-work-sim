@@ -13,15 +13,15 @@ export function ProductCard(product: Product) {
       </div>
       <div className="bg-white rounded-b-xl flex flex-col justify-between flex-1">
         <div>
-          <p className="text-[#757575] text-sm font-bold ml-2 pt-2">
+          <p className="text-sub-label text-sm font-bold ml-2 pt-2">
             {product.brand}
           </p>
-          <p className="font-bold mx-2">{product.title}</p>
+          <p className="font-bold mx-2 text-main-label">{product.title}</p>
         </div>
 
         <div className="flex justify-between">
-          <p className="font-bold text-[#006b1d] m-2">${product.price}</p>
-          <p className="text-xs text-[#757575] m-2">⭐{product.rating}</p>
+          <p className="font-bold text-brand-green m-2">${product.price}</p>
+          <p className="text-xs text-sub-label m-2">⭐{product.rating}</p>
         </div>
       </div>
     </div>

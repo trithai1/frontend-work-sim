@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-sub-label: #757575;
+  --color-main-label: black;
+  --color-brand-green: #006b1d;
+  --color-brand-brown: #b3480e;
+}
