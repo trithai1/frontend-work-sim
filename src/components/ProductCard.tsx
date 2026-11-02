@@ -1,4 +1,3 @@
-import type { CartItem } from "../types/cart";
 import type { Product } from "../types/product";
 
 

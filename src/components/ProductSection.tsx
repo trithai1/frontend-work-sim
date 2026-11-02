@@ -11,10 +11,10 @@ type Section = {
   favorites: number[];
   setFavorites: Dispatch<React.SetStateAction<number[]>>;
   cart: CartItem[];
-  setCart: Dispatch<React.SetStateAction<CartItem[]>>;
+  addToCart: (product: Product) => void;
 };
 
-export function ProductSection({ title, products, favorites, setFavorites, cart, setCart }: Section) {
+export function ProductSection({ title, products, favorites, setFavorites, cart, addToCart }: Section) {
   return (
     <div>
       <div>
@@ -32,7 +32,7 @@ export function ProductSection({ title, products, favorites, setFavorites, cart,
             favorites={favorites}
             setFavorites={setFavorites}
             cart={cart}
-            setCart={setCart}
+            addToCart={addToCart}
           />
         }
       </div>

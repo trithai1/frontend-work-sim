@@ -10,12 +10,15 @@ import { SearchBar } from "./components/SearchBar";
 import { useState } from "react";
 import { EmptyState } from "./components/EmptyState";
 import type { CartItem } from "./types/cart";
+import { CartPanel } from "./components/CartPanel";
+import type { Product } from "./types/product";
 
 
 function App() {
   const [search, setSearch] = useState("");
   const [favorites, setFavorites] = useState<number[]>([]);
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [cartHidden, setCartHidden] = useState(true);
   const [theme, setTheme] = useState("light");
   const searchProducts = search === "" ? null : products.filter(product => product.title.includes(search));
 
@@ -31,9 +34,34 @@ function App() {
     setTheme(newTheme);
   }
 
+  function addToCart(product: Product) {
+    const inCart = cart.some(item => item.product.id === product.id);
+    
+    let newCart;
+    if (inCart) {
+      newCart = cart.map(item => item.product.id === product.id && item.quantity < product.stock ?
+        {...item, quantity: item.quantity + 1} : item
+      );
+    } else newCart = [...cart, {product, quantity: 1}];
+    setCart(newCart);
+  }
+
   return (
     <div className={theme === "dark" ? "dark" : ""}>
-      <Navbar theme={theme} toggleTheme={toggleTheme} favorites={favorites} cart={cart}/>
+      <CartPanel
+        cart={cart}
+        setCart={setCart}
+        cartHidden={cartHidden}
+        setCartHidden={setCartHidden}
+        addToCart={addToCart}
+      />
+      <Navbar
+        theme={theme}
+        toggleTheme={toggleTheme}
+        favorites={favorites}
+        cart={cart}
+        setCartHidden={setCartHidden}
+      />
       <main className="min-h-screen bg-page-bg p-8">
         <SearchBar
           setSearch={setSearch}
@@ -49,7 +77,7 @@ function App() {
             favorites={favorites}
             setFavorites={setFavorites}
             cart={cart}
-            setCart={setCart}
+            addToCart={addToCart}
           />
 
           <ProductSection
@@ -58,7 +86,7 @@ function App() {
             favorites={favorites}
             setFavorites={setFavorites}
             cart={cart}
-            setCart={setCart}
+            addToCart={addToCart}
           />
 
           <ProductSection
@@ -67,7 +95,7 @@ function App() {
             favorites={favorites}
             setFavorites={setFavorites}
             cart={cart}
-            setCart={setCart}
+            addToCart={addToCart}
           />
 
           <p className="font-bold text-2xl m-2 text-main-label">Shop by Category</p>
@@ -79,7 +107,7 @@ function App() {
               favorites={favorites}
               setFavorites={setFavorites}
               cart={cart}
-              setCart={setCart}
+              addToCart={addToCart}
             />
           ))}
         </>}
@@ -91,7 +119,7 @@ function App() {
             favorites={favorites}
             setFavorites={setFavorites}
             cart={cart}
-            setCart={setCart}
+            addToCart={addToCart}
           />}
         
         {searchProducts !== null && searchProducts.length === 0 && <EmptyState message={
