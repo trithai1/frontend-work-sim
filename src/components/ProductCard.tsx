@@ -1,11 +1,16 @@
+import type { CartItem } from "../types/cart";
 import type { Product } from "../types/product";
 
 
-export function ProductCard({product, isFavorite, onToggleFavorite}: {
+type Card = {
   product: Product;
   isFavorite: boolean;
   onToggleFavorite: (id: number, isFavorite: boolean) => void;
-}) {
+  isMaxCart: boolean;
+  addToCart: (product: Product) => void;
+};
+
+export function ProductCard({product, isFavorite, onToggleFavorite, isMaxCart, addToCart}: Card) {
   return (
     <div className="relative flex flex-col bg-product-bg w-[80vw] md:w-[22vw] rounded-xl shadow-md">
       {product.stock < 10 && (
@@ -31,6 +36,9 @@ export function ProductCard({product, isFavorite, onToggleFavorite}: {
           <p className="font-bold text-brand-green m-2">${product.price}</p>
           <p className="text-xs text-sub-label m-2">⭐{product.rating}</p>
         </div>
+        {isMaxCart ?
+          <button className="bg-gray-300 mt-2 mb-4 mx-4 p-2 rounded-xl text-gray-400 font-bold">Max in cart</button> :
+          <button className="bg-brand-green mt-2 mb-4 mx-4 p-2 rounded-xl text-white dark:text-black font-bold" onClick={() => addToCart(product)}>Add to cart</button>}
       </div>
     </div>
   );

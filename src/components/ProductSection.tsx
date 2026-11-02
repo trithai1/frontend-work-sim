@@ -2,6 +2,7 @@ import type { Product } from "../types/product";
 import { EmptyState } from "./EmptyState";
 import { ProductGrid } from "./ProductGrid";
 import type { Dispatch } from "react";
+import type { CartItem } from "../types/cart";
 
 
 type Section = {
@@ -9,9 +10,11 @@ type Section = {
   products: Product[];
   favorites: number[];
   setFavorites: Dispatch<React.SetStateAction<number[]>>;
+  cart: CartItem[];
+  setCart: Dispatch<React.SetStateAction<CartItem[]>>;
 };
 
-export function ProductSection({ title, products, favorites, setFavorites }: Section) {
+export function ProductSection({ title, products, favorites, setFavorites, cart, setCart }: Section) {
   return (
     <div>
       <div>
@@ -28,6 +31,8 @@ export function ProductSection({ title, products, favorites, setFavorites }: Sec
             products={products}
             favorites={favorites}
             setFavorites={setFavorites}
+            cart={cart}
+            setCart={setCart}
           />
         }
       </div>

@@ -9,11 +9,13 @@ import { groupByCategory } from "./utils/groupByCategory";
 import { SearchBar } from "./components/SearchBar";
 import { useState } from "react";
 import { EmptyState } from "./components/EmptyState";
+import type { CartItem } from "./types/cart";
 
 
 function App() {
   const [search, setSearch] = useState("");
   const [favorites, setFavorites] = useState<number[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [theme, setTheme] = useState("light");
   const searchProducts = search === "" ? null : products.filter(product => product.title.includes(search));
 
@@ -31,7 +33,7 @@ function App() {
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
-      <Navbar theme={theme} toggleTheme={toggleTheme} favorites={favorites}/>
+      <Navbar theme={theme} toggleTheme={toggleTheme} favorites={favorites} cart={cart}/>
       <main className="min-h-screen bg-page-bg p-8">
         <SearchBar
           setSearch={setSearch}
@@ -46,6 +48,8 @@ function App() {
             products={under20}
             favorites={favorites}
             setFavorites={setFavorites}
+            cart={cart}
+            setCart={setCart}
           />
 
           <ProductSection
@@ -53,6 +57,8 @@ function App() {
             products={topRated}
             favorites={favorites}
             setFavorites={setFavorites}
+            cart={cart}
+            setCart={setCart}
           />
 
           <ProductSection
@@ -60,6 +66,8 @@ function App() {
             products={luxury}
             favorites={favorites}
             setFavorites={setFavorites}
+            cart={cart}
+            setCart={setCart}
           />
 
           <p className="font-bold text-2xl m-2 text-main-label">Shop by Category</p>
@@ -70,6 +78,8 @@ function App() {
               products={products}
               favorites={favorites}
               setFavorites={setFavorites}
+              cart={cart}
+              setCart={setCart}
             />
           ))}
         </>}
@@ -80,6 +90,8 @@ function App() {
             products={searchProducts}
             favorites={favorites}
             setFavorites={setFavorites}
+            cart={cart}
+            setCart={setCart}
           />}
         
         {searchProducts !== null && searchProducts.length === 0 && <EmptyState message={

@@ -1,8 +1,16 @@
-export function Navbar({theme, toggleTheme, favorites}: {
+import type { CartItem } from "../types/cart";
+
+
+type bar = {
   theme: string;
   toggleTheme: () => void;
   favorites: number[];
-}) {
+  cart: CartItem[];
+};
+
+export function Navbar({theme, toggleTheme, favorites, cart}: bar) {
+  const cartQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+  console.log(cart);
   const links = [
     {
       label: "Shop",
@@ -13,7 +21,7 @@ export function Navbar({theme, toggleTheme, favorites}: {
       href: "/favorites",
     },
     {
-      label: "Cart",
+      label: `Cart (${cartQuantity})`,
       href: "/cart",
     },
   ];
