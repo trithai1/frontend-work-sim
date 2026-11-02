@@ -12,22 +12,7 @@ type bar = {
 
 export function Navbar({theme, toggleTheme, favorites, cart, setCartHidden}: bar) {
   const cartQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-  console.log(cart);
-  const links = [
-    {
-      label: "Shop",
-      href: "/shop",
-    },
-    {
-      label: `Favorites (${favorites.length})`,
-      href: "/favorites",
-    },
-    {
-      label: `Cart (${cartQuantity})`,
-      href: "/cart",
-    },
-  ];
-
+  
   return (
     <div className="sticky top-0 shadow-md flex justify-between p-5 bg-label-bg/92 z-90">
       <p className="text-2xl font-bold text-brand-green">🍀 SummitGear Market</p>

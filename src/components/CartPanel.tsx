@@ -1,4 +1,4 @@
-import { useState, type Dispatch } from "react";
+import type { Dispatch } from "react";
 import type { CartItem } from "../types/cart";
 import { EmptyState } from "./EmptyState";
 import type { Product } from "../types/product";
