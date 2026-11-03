@@ -12,6 +12,7 @@ import { EmptyState } from "./components/EmptyState";
 import type { CartItem } from "./types/cart";
 import { CartPanel } from "./components/CartPanel";
 import type { Product } from "./types/product";
+import { SuggestProductForm } from "./components/SuggestProductForm";
 
 
 function App() {
@@ -45,6 +46,28 @@ function App() {
     } else newCart = [...cart, {product, quantity: 1}];
     setCart(newCart);
   }
+
+  return (
+    <div className={theme === "dark" ? "dark" : ""}>
+      <CartPanel
+        cart={cart}
+        setCart={setCart}
+        cartHidden={cartHidden}
+        setCartHidden={setCartHidden}
+        addToCart={addToCart}
+      />
+      <Navbar
+        theme={theme}
+        toggleTheme={toggleTheme}
+        favorites={favorites}
+        cart={cart}
+        setCartHidden={setCartHidden}
+      />
+      <main className="min-h-screen bg-page-bg p-8">
+        <SuggestProductForm />
+      </main>
+    </div>
+  );
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
