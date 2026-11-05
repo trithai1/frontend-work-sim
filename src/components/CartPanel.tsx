@@ -1,36 +1,12 @@
-import type { Dispatch } from "react";
-import type { CartItem } from "../types/cart";
 import { EmptyState } from "./EmptyState";
-import type { Product } from "../types/product";
+import { useCartStore } from "../store/cart";
 
 
-type Panel = {
-  cart: CartItem[];
-  setCart: Dispatch<React.SetStateAction<CartItem[]>>;
-  cartHidden: boolean;
-  setCartHidden: Dispatch<React.SetStateAction<boolean>>;
-  addToCart: (product: Product) => void;
-};
+export function CartPanel() {
+  const { cart, cartHidden, setCartHidden, addToCart, subtractFromCart, removeFromCart } = useCartStore();
 
-export function CartPanel({cart, setCart, cartHidden, setCartHidden, addToCart}: Panel) {
   const subtotal = cart.reduce((acc, item) => acc += item.product.price * item.quantity, 0).toFixed(2);
   const cartQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-
-  function subtractFromCart(product: Product) {
-    const inCart = cart.some(item => item.product.id === product.id);
-    
-    const newCart = inCart ? cart.reduce((acc: CartItem[], item) => {
-      if(item.product.id !== product.id) acc.push(item);
-      else if(item.quantity > 1) acc.push({...item, quantity: item.quantity - 1});
-      return acc;
-    }, []) : cart;
-    setCart(newCart);
-  }
-
-  function removeFromCart(product: Product) {
-    const newCart = cart.filter(item => item.product.id !== product.id);
-    setCart(newCart);
-  }
 
   return(
     <div>

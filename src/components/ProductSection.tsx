@@ -1,20 +1,12 @@
 import type { Product } from "../types/product";
 import { EmptyState } from "./EmptyState";
 import { ProductGrid } from "./ProductGrid";
-import type { Dispatch } from "react";
-import type { CartItem } from "../types/cart";
 
 
-type Section = {
+export function ProductSection({ title, products }: {
   title: string;
   products: Product[];
-  favorites: number[];
-  setFavorites: Dispatch<React.SetStateAction<number[]>>;
-  cart: CartItem[];
-  addToCart: (product: Product) => void;
-};
-
-export function ProductSection({ title, products, favorites, setFavorites, cart, addToCart }: Section) {
+}) {
   return (
     <div>
       <div>
@@ -29,10 +21,6 @@ export function ProductSection({ title, products, favorites, setFavorites, cart,
           }
           /> : <ProductGrid
             products={products}
-            favorites={favorites}
-            setFavorites={setFavorites}
-            cart={cart}
-            addToCart={addToCart}
           />
         }
       </div>

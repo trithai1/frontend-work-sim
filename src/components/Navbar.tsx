@@ -1,17 +1,13 @@
-import type { Dispatch } from "react";
-import type { CartItem } from "../types/cart";
+import { useThemeStore } from "../store/theme";
+import { useCartStore } from "../store/cart";
+import { useFavoriteStore } from "../store/favorite";
 
 
-type bar = {
-  theme: string;
-  toggleTheme: () => void;
-  favorites: number[];
-  cart: CartItem[];
-  setCartHidden: Dispatch<React.SetStateAction<boolean>>;
-};
-
-export function Navbar({theme, toggleTheme, favorites, cart, setCartHidden}: bar) {
+export function Navbar() {
+  const favorites = useFavoriteStore(state => state.favorites);
+  const { cart, setCartHidden } = useCartStore();
   const cartQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const {theme, toggleTheme} = useThemeStore();
   
   return (
     <div className="sticky top-0 shadow-md flex justify-between px-5 py-3 bg-label-bg/92 z-90">

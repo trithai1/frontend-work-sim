@@ -1,15 +1,15 @@
+import { useCartStore } from "../store/cart";
+import { useFavoriteStore } from "../store/favorite";
 import type { Product } from "../types/product";
 
 
-type Card = {
-  product: Product;
-  isFavorite: boolean;
-  onToggleFavorite: (id: number, isFavorite: boolean) => void;
-  isMaxCart: boolean;
-  addToCart: (product: Product) => void;
-};
+export function ProductCard({product}: {product: Product}) {
+  const {favorites, toggleFavorite} = useFavoriteStore();
+  const {cart, addToCart} = useCartStore();
 
-export function ProductCard({product, isFavorite, onToggleFavorite, isMaxCart, addToCart}: Card) {
+  const isFavorite = favorites.some(fav => fav === product.id);
+  const isMaxCart = cart.some(item => item.product.id === product.id && item.quantity >= product.stock);
+
   return (
     <div className="relative flex flex-col bg-product-bg w-[80vw] md:w-[22vw] rounded-xl shadow-md">
       {product.stock < 10 && (
@@ -18,8 +18,8 @@ export function ProductCard({product, isFavorite, onToggleFavorite, isMaxCart, a
         </div>
       )}
       {isFavorite ?
-        <button className="absolute right-0 m-2 bg-red-100 p-2 rounded-full border-1 border-solid border-gray-300 text-xs" onClick={() => onToggleFavorite(product.id, isFavorite)}>❤️</button> :
-        <button className="absolute right-0 m-2 bg-white p-1 px-2 rounded-full border-1 border-solid border-gray-300" onClick={() => onToggleFavorite(product.id, isFavorite)}>♡</button>}
+        <button className="absolute right-0 m-2 bg-red-100 p-2 rounded-full border-1 border-solid border-gray-300 text-xs" onClick={() => toggleFavorite(product.id)}>❤️</button> :
+        <button className="absolute right-0 m-2 bg-white p-1 px-2 rounded-full border-1 border-solid border-gray-300" onClick={() => toggleFavorite(product.id)}>♡</button>}
       <div className="flex justify-center">
         <img src={product.thumbnail} alt="product-photo"></img>
       </div>
