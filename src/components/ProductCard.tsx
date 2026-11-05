@@ -1,11 +1,15 @@
+import { useCartStore } from "../store/cart";
+import { useFavoriteStore } from "../store/favorite";
 import type { Product } from "../types/product";
 
 
-export function ProductCard({product, isFavorite, onToggleFavorite}: {
-  product: Product;
-  isFavorite: boolean;
-  onToggleFavorite: (id: number, isFavorite: boolean) => void;
-}) {
+export function ProductCard({product}: {product: Product}) {
+  const {favorites, toggleFavorite} = useFavoriteStore();
+  const {cart, addToCart} = useCartStore();
+
+  const isFavorite = favorites.some(fav => fav === product.id);
+  const isMaxCart = cart.some(item => item.product.id === product.id && item.quantity >= product.stock);
+
   return (
     <div className="relative flex flex-col bg-product-bg w-[80vw] md:w-[22vw] rounded-xl shadow-md">
       {product.stock < 10 && (
@@ -14,8 +18,8 @@ export function ProductCard({product, isFavorite, onToggleFavorite}: {
         </div>
       )}
       {isFavorite ?
-        <button className="absolute right-0 m-2 bg-red-100 p-2 rounded-full border-1 border-solid border-gray-300 text-xs" onClick={() => onToggleFavorite(product.id, isFavorite)}>❤️</button> :
-        <button className="absolute right-0 m-2 bg-white p-1 px-2 rounded-full border-1 border-solid border-gray-300" onClick={() => onToggleFavorite(product.id, isFavorite)}>♡</button>}
+        <button className="absolute right-0 m-2 bg-red-100 p-2 rounded-full border-1 border-solid border-gray-300 text-xs" onClick={() => toggleFavorite(product.id)}>❤️</button> :
+        <button className="absolute right-0 m-2 bg-white p-1 px-2 rounded-full border-1 border-solid border-gray-300" onClick={() => toggleFavorite(product.id)}>♡</button>}
       <div className="flex justify-center">
         <img src={product.thumbnail} alt="product-photo"></img>
       </div>
@@ -31,6 +35,9 @@ export function ProductCard({product, isFavorite, onToggleFavorite}: {
           <p className="font-bold text-brand-green m-2">${product.price}</p>
           <p className="text-xs text-sub-label m-2">⭐{product.rating}</p>
         </div>
+        {isMaxCart ?
+          <button className="bg-gray-300 mt-2 mb-4 mx-4 p-2 rounded-xl text-gray-400 font-bold">Max in cart</button> :
+          <button className="bg-brand-green mt-2 mb-4 mx-4 p-2 rounded-xl text-white dark:text-black font-bold" onClick={() => addToCart(product)}>Add to cart</button>}
       </div>
     </div>
   );

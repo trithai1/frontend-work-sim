@@ -1,17 +1,12 @@
 import type { Product } from "../types/product";
 import { EmptyState } from "./EmptyState";
 import { ProductGrid } from "./ProductGrid";
-import type { Dispatch } from "react";
 
 
-type Section = {
+export function ProductSection({ title, products }: {
   title: string;
   products: Product[];
-  favorites: number[];
-  setFavorites: Dispatch<React.SetStateAction<number[]>>;
-};
-
-export function ProductSection({ title, products, favorites, setFavorites }: Section) {
+}) {
   return (
     <div>
       <div>
@@ -26,8 +21,6 @@ export function ProductSection({ title, products, favorites, setFavorites }: Sec
           }
           /> : <ProductGrid
             products={products}
-            favorites={favorites}
-            setFavorites={setFavorites}
           />
         }
       </div>
