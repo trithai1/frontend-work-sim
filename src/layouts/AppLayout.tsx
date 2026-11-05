@@ -12,7 +12,7 @@ export function AppLayout() {
     <div className={theme === "dark" ? "dark" : ""}>
       <CartPanel />
       <Navbar />
-      <main>
+      <main className="min-h-screen bg-page-bg p-8">
         <Outlet />
       </main>
       < Footer />

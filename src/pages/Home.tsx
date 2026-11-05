@@ -19,7 +19,7 @@ export function Home() {
   const categoryProducts = groupByCategory(products);
 
   return (
-    <div className="min-h-screen bg-page-bg p-8">
+    <>
       <SearchBar
         setSearch={setSearch}
         searchProducts={searchProducts}
@@ -66,6 +66,6 @@ export function Home() {
             <p className="mb-10 m-1 text-empty-info">Nothing matches "{search}". Try a different search.</p>
           </div>
         }/>}
-    </div>
+    </>
   );
 }
