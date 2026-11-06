@@ -8,7 +8,7 @@ import { EmptyState } from "../components/EmptyState";
 import { StatsBar } from "../components/StatsBar";
 
 
-export function MarketSuccess({products, search}: {products: Product[], search: string}) {
+function MarketSuccess({products, search}: {products: Product[], search: string}) {
   const searchProducts = search === "" ? null : products.filter(product => product.title.includes(search));
 
   const under20 = products.filter(product => product.price < 20);
@@ -65,7 +65,7 @@ export function MarketSuccess({products, search}: {products: Product[], search: 
   );
 }
 
-export function MarketLoading() {
+function MarketLoading() {
   const grayGradiant = "bg-linear-to-r from-gray-300 via-white to-gray-300";
   return(
     <>
@@ -89,7 +89,7 @@ export function MarketLoading() {
   );
 }
 
-export function MarketFailed({fetchProduct}: {fetchProduct: () => void}) {
+function MarketFailed({fetchProduct}: {fetchProduct: () => void}) {
   return(
     <div className="flex flex-col items-center bg-red-50 border-1 border-red-100 py-8 rounded-xl">
       <p className="text-3xl">⚠️</p>
