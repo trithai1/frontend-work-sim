@@ -1,5 +1,6 @@
 import { EmptyState } from "./EmptyState";
 import { useCartStore } from "../store/cart";
+import { useEffect } from "react";
 
 
 export function CartPanel() {
@@ -7,6 +8,10 @@ export function CartPanel() {
 
   const subtotal = cart.reduce((acc, item) => acc += item.product.price * item.quantity, 0).toFixed(2);
   const cartQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+  useEffect(() => {
+    document.title = cartQuantity === 0 ? "SummitGear Market" : `SummitGear Market (${cartQuantity})`;
+  }, [cartQuantity]);
 
   return(
     <div>
