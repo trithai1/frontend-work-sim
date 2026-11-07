@@ -6,9 +6,17 @@ import { Suggestion } from "./pages/Suggestion";
 import { AppLayout } from "./layouts/AppLayout";
 import { Favorites } from "./pages/Favorites";
 import { Cart } from "./pages/Cart";
+import { useProductStore } from "./store/products";
+import { useEffect } from "react";
 
 
 function App() {
+  const fetchProducts = useProductStore(state => state.fetchProducts);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <Routes>
       <Route element={<AppLayout />}>

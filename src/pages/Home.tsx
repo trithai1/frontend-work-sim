@@ -1,11 +1,11 @@
-import axios from "axios";
 import { SearchBar } from "../components/SearchBar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { Product } from "../types/product";
 import { groupByCategory } from "../utils/groupByCategory";
 import { ProductSection } from "../components/ProductSection";
 import { EmptyState } from "../components/EmptyState";
 import { StatsBar } from "../components/StatsBar";
+import { useProductStore } from "../store/products";
 
 
 function MarketSuccess({products, search}: {products: Product[], search: string}) {
@@ -89,38 +89,20 @@ function MarketLoading() {
   );
 }
 
-function MarketFailed({fetchProduct}: {fetchProduct: () => void}) {
+function MarketFailed() {
+  const fetchProducts = useProductStore(state => state.fetchProducts);
   return(
     <div className="flex flex-col items-center bg-red-50 border-1 border-red-100 py-8 rounded-xl">
       <p className="text-3xl">⚠️</p>
       <p className="font-bold text-red-800">We couldn't load products</p>
       <p className="mb-4 text-red-800">Something went wrong talking to the server. Check your connection and try again.</p>
-      <button className="bg-green-900 px-4 py-1.5 rounded-md text-white font-bold" onClick={fetchProduct}>Try again</button>
+      <button className="bg-green-900 px-4 py-1.5 rounded-md text-white font-bold" onClick={fetchProducts}>Try again</button>
     </div>
   );
 }
 
 export function Home() {
-  const [status, setStatus] = useState<"loading" | "failed" | "success">("loading");
-  const [products, setProducts] = useState<Product[]>([]);
-
-  async function fetchProduct() {
-    setStatus("loading");
-    try {
-      const response = await axios.get("https://dummyjson.com/products");
-      if (response.status === 200) {
-        setProducts(response.data.products);
-        setStatus("success");
-      } else setStatus("failed");
-    } catch {
-      setStatus("failed");
-    }
-  }
-
-  useEffect(() => {
-    fetchProduct();
-  }, []);
-
+  const {status, products} = useProductStore();
   const [search, setSearch] = useState("");
   const searchProducts = search === "" ? null : products.filter(product => product.title.includes(search));
 
@@ -133,7 +115,7 @@ export function Home() {
       />
       {status === "success" && <MarketSuccess products={products} search={search}/>}
       {status === "loading" && <MarketLoading />}
-      {status === "failed" && <MarketFailed fetchProduct={fetchProduct}/>}
+      {status === "failed" && <MarketFailed />}
     </>
   );
 }
