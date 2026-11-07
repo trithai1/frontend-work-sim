@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router";
 import { Home } from "./pages/Home";
 import { Suggestion } from "./pages/Suggestion";
 import { AppLayout } from "./layouts/AppLayout";
+import { Favorites } from "./pages/Favorites";
+import { Cart } from "./pages/Cart";
 
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
       <Route element={<AppLayout />}>
         <Route path="/" element={<Home />}/>
         <Route path="/suggestion" element={<Suggestion />}/>
+        <Route path="/favorites" element={<Favorites />}/>
+        <Route path="/cart" element={<Cart />}/>
       </Route>
     </Routes>
   );

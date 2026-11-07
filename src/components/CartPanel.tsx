@@ -1,6 +1,7 @@
 import { EmptyState } from "./EmptyState";
 import { useCartStore } from "../store/cart";
 import { useEffect } from "react";
+import { NavLink } from "react-router";
 
 
 export function CartPanel() {
@@ -18,7 +19,7 @@ export function CartPanel() {
       <div className={`absolute fixed bg-black/50 h-dvh w-dvw z-50 ${cartHidden ? "hidden" : ""}`}></div>
       <div className={`flex flex-col fixed bg-page-bg right-0 h-dvh w-[90vw] max-w-160 z-100 ${cartHidden ? "hidden" : ""}`}>
         <div className="flex justify-between shadow-md p-2 py-3 font-bold rounded-b-md bg-product-bg">
-          <p className="text-xl pt-1 text-main-label">Your cart ({cartQuantity})</p>
+          <NavLink to="/cart" className="text-xl pt-1 text-main-label">Your cart ({cartQuantity})</NavLink>
           <button className="text-3xl text-sub-label" onClick={() => setCartHidden(true)}>×</button>
         </div>
         {cart.length === 0 ?
