@@ -8,10 +8,18 @@ import { Favorites } from "./pages/Favorites";
 import { Cart } from "./pages/Cart";
 import { useProductStore } from "./store/products";
 import { useEffect } from "react";
+import { useCartStore } from "./store/cart";
 
 
 function App() {
   const fetchProducts = useProductStore(state => state.fetchProducts);
+  
+  const cart = useCartStore(state => state.cart);
+  const cartQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+  
+  useEffect(() => {
+    document.title = cartQuantity === 0 ? "SummitGear Market" : `SummitGear Market (${cartQuantity})`;
+  }, [cartQuantity]);
 
   useEffect(() => {
     fetchProducts();
