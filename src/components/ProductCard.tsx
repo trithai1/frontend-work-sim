@@ -19,7 +19,8 @@ export function ProductCard({product}: {product: Product}) {
       )}
       {isFavorite ?
         <button className="absolute right-0 m-2 bg-red-100 p-2 rounded-full border-1 border-solid border-gray-300 text-xs" onClick={() => toggleFavorite(product.id)}>❤️</button> :
-        <button className="absolute right-0 m-2 bg-white p-1 px-2 rounded-full border-1 border-solid border-gray-300" onClick={() => toggleFavorite(product.id)}>♡</button>}
+        <button className="absolute right-0 m-2 bg-white p-1 px-2 rounded-full border-1 border-solid border-gray-300" onClick={() => toggleFavorite(product.id)}>♡</button>
+      }
       <div className="flex justify-center">
         <img src={product.thumbnail} alt="product-photo"></img>
       </div>
@@ -37,7 +38,8 @@ export function ProductCard({product}: {product: Product}) {
         </div>
         {isMaxCart ?
           <button className="bg-gray-300 mt-2 mb-4 mx-4 p-2 rounded-xl text-gray-400 font-bold">Max in cart</button> :
-          <button className="bg-brand-green mt-2 mb-4 mx-4 p-2 rounded-xl text-white dark:text-black font-bold" onClick={() => addToCart(product)}>Add to cart</button>}
+          <button className="bg-brand-green mt-2 mb-4 mx-4 p-2 rounded-xl text-white dark:text-black font-bold" onClick={() => addToCart(product)}>Add to cart</button>
+        }
       </div>
     </div>
   );
