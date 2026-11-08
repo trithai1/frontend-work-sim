@@ -14,7 +14,7 @@ export function AppLayout() {
       <CartPanel />
       <PromoBanner />
       <Navbar />
-      <main className="bg-page-bg p-8 flex-1">
+      <main className="bg-page-bg p-8 flex flex-col flex-1">
         <Outlet />
       </main>
       < Footer />

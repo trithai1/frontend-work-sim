@@ -1,6 +1,7 @@
 import { useCartStore } from "../store/cart";
 import { useFavoriteStore } from "../store/favorite";
 import type { Product } from "../types/product";
+import { NavLink } from "react-router";
 
 
 export function ProductCard({product}: {product: Product}) {
@@ -21,15 +22,15 @@ export function ProductCard({product}: {product: Product}) {
         <button className="absolute right-0 m-2 bg-red-100 p-2 rounded-full border-1 border-solid border-gray-300 text-xs" onClick={() => toggleFavorite(product.id)}>❤️</button> :
         <button className="absolute right-0 m-2 bg-white p-1 px-2 rounded-full border-1 border-solid border-gray-300" onClick={() => toggleFavorite(product.id)}>♡</button>
       }
-      <div className="flex justify-center">
+      <NavLink to={`/products/${product.id}`} className="flex justify-center">
         <img src={product.thumbnail} alt="product-photo"></img>
-      </div>
+      </NavLink>
       <div className="bg-label-bg rounded-b-xl flex flex-col justify-between flex-1">
         <div>
           <p className="text-sub-label text-sm font-bold ml-2 pt-2">
             {product.brand}
           </p>
-          <p className="font-bold mx-2 text-main-label">{product.title}</p>
+          <NavLink to={`/products/${product.id}`} className="font-bold mx-2 text-main-label">{product.title}</NavLink>
         </div>
 
         <div className="flex justify-between">
