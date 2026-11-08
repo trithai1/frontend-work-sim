@@ -21,8 +21,11 @@ function ProductFound({product}: {product: Product}) {
         <p className="text-sub-label font-bold">{product.brand}</p>
         <p className="text-main-label font-bold text-2xl mb-2">{product.title}</p>
         <div className="flex gap-4 mb-2">
-          <p className="bg-gray-300 text-sub-label text-sm px-2 rounded-full">{product.category}</p>
-          <p className="bg-green-100 text-brand-green font-bold text-sm px-2 rounded-full">{`In stock - ${product.stock} left`}</p>
+          <p className="bg-gray-300 text-gray-600 font-bold text-sm px-2 rounded-full">{product.category}</p>
+          {product.stock < 10 ?
+            <p className="bg-low-bg text-low-text font-bold text-sm px-2 rounded-full">{`Low stock - ${product.stock} left`}</p> :
+            <p className="bg-green-100 text-brand-green font-bold text-sm px-2 rounded-full">{`In stock - ${product.stock} left`}</p>
+          }
           <p className="bg-gray-300 text-sm text-black font-bold px-2 rounded-full">{`⭐${product.rating}`}</p>
         </div>
         <p className="text-brand-green font-bold text-2xl mb-2">{`$${product.price}`}</p>

@@ -14,8 +14,8 @@ export function ProductCard({product}: {product: Product}) {
   return (
     <div className="relative flex flex-col bg-product-bg w-[80vw] md:w-[22vw] rounded-xl shadow-md">
       {product.stock < 10 && (
-        <div className="absolute bg-[#ede85c] w-fit rounded-xl m-2 border border-[#59480d]">
-          <p className="font-bold text-[#59480d] px-1 py-.5">Low stock</p>
+        <div className="absolute bg-low-bg w-fit rounded-xl m-2 border border-[#59480d]">
+          <p className="font-bold text-low-text px-1 py-.5">Low stock</p>
         </div>
       )}
       {isFavorite ?

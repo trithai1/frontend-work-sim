@@ -26,7 +26,8 @@ export function PromoBanner() {
 
   return (
     <>
-      {!hidePromo && <div className="flex justify-center items-center bg-brand-green text-white dark:text-black py-2 font-bold">
+      {!hidePromo &&
+      <div className="flex justify-center items-center bg-brand-green text-white dark:text-black py-2 font-bold">
         <p className="text-white">{promoMsgs[promo]}</p>
         <ul className="flex ml-2">
           {promoMsgs.map((_, idx) => idx === promo ?
