@@ -10,6 +10,7 @@ import { useProductStore } from "./store/products";
 import { useEffect } from "react";
 import { useCartStore } from "./store/cart";
 import { ProductPage } from "./pages/Product";
+import { Page404 } from "./pages/Page404";
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/products/:id" element={<ProductPage />} />
+
+        <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>
   );
