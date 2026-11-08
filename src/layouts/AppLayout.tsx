@@ -10,11 +10,11 @@ export function AppLayout() {
   const theme = useThemeStore((state) => state.theme);
 
   return (
-    <div className={theme === "dark" ? "dark" : ""}>
+    <div className={`${theme === "dark" ? "dark" : ""} flex flex-col min-h-screen`}>
       <CartPanel />
       <PromoBanner />
       <Navbar />
-      <main className="min-h-screen bg-page-bg p-8">
+      <main className="bg-page-bg p-8 flex-1">
         <Outlet />
       </main>
       < Footer />

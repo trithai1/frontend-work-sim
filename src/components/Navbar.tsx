@@ -12,7 +12,7 @@ export function Navbar() {
   
   return (
     <div className="sticky top-0 shadow-md flex justify-between px-5 py-3 bg-label-bg/92 z-90">
-      <NavLink to="\" className="text-2xl font-bold text-brand-green">🍀 SummitGear Market</NavLink>
+      <NavLink to="/" className="text-2xl font-bold text-brand-green">🍀 SummitGear Market</NavLink>
       <div className="flex items-center gap-4">
         <NavLink to="/" className="text-main-label">Shop</NavLink>
         <NavLink to="/favorites" className="text-main-label">Favorites ({favorites.length})</NavLink>

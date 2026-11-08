@@ -9,6 +9,7 @@ import { Cart } from "./pages/Cart";
 import { useProductStore } from "./store/products";
 import { useEffect } from "react";
 import { useCartStore } from "./store/cart";
+import { ProductPage } from "./pages/Product";
 
 
 function App() {
@@ -28,10 +29,11 @@ function App() {
   return (
     <Routes>
       <Route element={<AppLayout />}>
-        <Route path="/" element={<Home />}/>
-        <Route path="/suggestion" element={<Suggestion />}/>
-        <Route path="/favorites" element={<Favorites />}/>
-        <Route path="/cart" element={<Cart />}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/suggestion" element={<Suggestion />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/products/:id" element={<ProductPage />} />
       </Route>
     </Routes>
   );
