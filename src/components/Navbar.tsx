@@ -12,12 +12,12 @@ export function Navbar() {
   
   return (
     <div className="sticky top-0 shadow-md flex justify-between px-5 py-3 bg-label-bg/92 z-90">
-      <NavLink to="/" className="text-2xl font-bold text-brand-green">🍀 SummitGear Market</NavLink>
+      <NavLink to="/" className="text-2xl font-bold text-brand-green" end>🍀 SummitGear Market</NavLink>
       <div className="flex items-center gap-4">
-        <NavLink to="/" className="text-main-label">Shop</NavLink>
-        <NavLink to="/favorites" className="text-main-label">Favorites ({favorites.length})</NavLink>
+        <NavLink to="/" className={({ isActive }) => isActive ? "text-link-selected": "text-main-label"} end>Shop</NavLink>
+        <NavLink to="/favorites" className={({ isActive }) => isActive ? "text-link-selected": "text-main-label"} end>Favorites ({favorites.length})</NavLink>
         <button className="text-main-label" onClick={() => setCartHidden(false)}>Cart ({cartQuantity})</button>
-        <NavLink to="/suggestion" className="text-main-label">Suggestion</NavLink>
+        <NavLink to="/suggestion" className={({ isActive }) => isActive ? "text-link-selected": "text-main-label"} end>Suggestion</NavLink>
         <button className="bg-product-bg py-1 px-2 rounded-md border-1 border-solid border-sub-label" onClick={toggleTheme}>{theme === "dark" ? "☀️" : "🌙"}</button>
       </div>
     </div>
