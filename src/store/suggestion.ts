@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { Suggestion } from "../types/suggestion";
+import { persist } from "zustand/middleware";
 
 
 type SuggestionState = {
@@ -9,17 +10,19 @@ type SuggestionState = {
   removeSuggestion: (id: number) => void;
 };
 
-export const useSuggestionStore = create<SuggestionState>()(set => ({
-  id: 0,
-  suggestions: [],
-  
-  addSuggestion: (productName, category, reason) => set(state => {
-    const newSuggestion = {id: state.id, productName, category, reason};
-    return {id: state.id + 1, suggestions: [...state.suggestions, newSuggestion]};
-  }),
+export const useSuggestionStore = create<SuggestionState>()(persist(
+  set => ({
+    id: 0,
+    suggestions: [],
+    
+    addSuggestion: (productName, category, reason) => set(state => {
+      const newSuggestion = {id: state.id, productName, category, reason};
+      return {id: state.id + 1, suggestions: [...state.suggestions, newSuggestion]};
+    }),
 
-  removeSuggestion: (id) => set(state => {
-    const newSuggestions = state.suggestions.filter(suggestion => suggestion.id !== id);
-    return { suggestions: newSuggestions };
-  }),
-}));
+    removeSuggestion: (id) => set(state => {
+      const newSuggestions = state.suggestions.filter(suggestion => suggestion.id !== id);
+      return { suggestions: newSuggestions };
+    }),
+  }), { name: "summitgear-suggestions" })
+);
