@@ -3,8 +3,8 @@ import { EmptyState } from "./EmptyState";
 import { ProductGrid } from "./ProductGrid";
 
 
-export function ProductSection({ title, products }: {
-  title: string;
+export function ProductSection({ title="", products }: {
+  title?: string;
   products: Product[];
 }) {
   return (

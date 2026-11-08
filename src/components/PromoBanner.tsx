@@ -26,12 +26,13 @@ export function PromoBanner() {
 
   return (
     <>
-      {!hidePromo && <div className="flex justify-center items-center bg-brand-green text-white dark:text-black py-2 font-bold">
+      {!hidePromo &&
+      <div className="flex justify-center items-center bg-brand-green text-white dark:text-black py-2 font-bold">
         <p className="text-white">{promoMsgs[promo]}</p>
         <ul className="flex ml-2">
           {promoMsgs.map((_, idx) => idx === promo ?
-            <button className="text-[10px]" onClick={() => setPromo(idx)}>🟢</button> :
-            <button className="text-[10px]" onClick={() => setPromo(idx)}>⚫</button>)}
+            <button key={idx} className="text-[10px]" onClick={() => setPromo(idx)}>🟢</button> :
+            <button key={idx} className="text-[10px]" onClick={() => setPromo(idx)}>⚫</button>)}
         </ul>
         <button className="absolute right-3 text-2xl font-bold text-white dark:text-black" onClick={closePromo}>×</button>
       </div>}

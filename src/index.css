@@ -12,6 +12,9 @@
   --color-empty-dash: var(--color-gray-400);
   --color-empty-info: var(--color-gray-500);
   --color-product-bg: #f2f2f2;
+  --color-link-selected: var(--color-blue-600);
+  --color-low-bg: #ede85c;
+  --color-low-text: #59480d;
 }
 
 .dark {

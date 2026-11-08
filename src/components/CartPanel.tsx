@@ -1,6 +1,6 @@
 import { EmptyState } from "./EmptyState";
 import { useCartStore } from "../store/cart";
-import { useEffect } from "react";
+import { NavLink } from "react-router";
 
 
 export function CartPanel() {
@@ -9,16 +9,15 @@ export function CartPanel() {
   const subtotal = cart.reduce((acc, item) => acc += item.product.price * item.quantity, 0).toFixed(2);
   const cartQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  useEffect(() => {
-    document.title = cartQuantity === 0 ? "SummitGear Market" : `SummitGear Market (${cartQuantity})`;
-  }, [cartQuantity]);
-
   return(
     <div>
       <div className={`absolute fixed bg-black/50 h-dvh w-dvw z-50 ${cartHidden ? "hidden" : ""}`}></div>
       <div className={`flex flex-col fixed bg-page-bg right-0 h-dvh w-[90vw] max-w-160 z-100 ${cartHidden ? "hidden" : ""}`}>
         <div className="flex justify-between shadow-md p-2 py-3 font-bold rounded-b-md bg-product-bg">
-          <p className="text-xl pt-1 text-main-label">Your cart ({cartQuantity})</p>
+          <NavLink to="/cart" className={({ isActive }) =>
+            `text-xl pt-1 ${
+              isActive ? "text-link-selected": "text-main-label"}`
+            } end>Your cart ({cartQuantity})</NavLink>
           <button className="text-3xl text-sub-label" onClick={() => setCartHidden(true)}>×</button>
         </div>
         {cart.length === 0 ?
@@ -33,7 +32,7 @@ export function CartPanel() {
         </div> :
         <ul className="overflow-y-auto bg-page-bg h-full shadow-md font-bold rounded-b-md">
           {cart.map(item => (
-            <li className="flex justify-between shadow-md p-2 rounded-b-md bg-label-bg">
+            <li key={item.product.id} className="flex justify-between shadow-md p-2 rounded-b-md bg-label-bg">
               <div className="flex">
                 <img className="w-25 h-auto bg-product-bg rounded-xl" src={item.product.thumbnail}></img>
                 <div className="p-2">
@@ -53,7 +52,7 @@ export function CartPanel() {
             </li>
           ))}
         </ul>}
-        <div className="flex justify-between shadow-md mt-auto p-4 bg-product-bg text-main-label">
+        <div className="flex justify-between shadow-md mt-auto p-4 bg-product-bg text-main-label font-bold">
           <p>Subtotal</p>
           <p>${subtotal}</p>
         </div>
