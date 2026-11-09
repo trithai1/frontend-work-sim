@@ -26,7 +26,7 @@ export function Cart() {
             </div>
           }/>
         </div> :
-        <ul className="overflow-y-auto bg-page-bg h-full font-bold rounded-md flex flex-col gap-4 md:flex-2 mr-0 md:mr-6 mb-4 md:mb-0">
+        <ul className="max-h-[70dvh] flex-1 overflow-y-auto bg-page-bg font-bold rounded-md flex flex-col gap-2 md:flex-2 mr-0 md:mr-6 mb-4 md:mb-0">
           {cart.map(item => (
             <li key={item.product.id} className="flex justify-between shadow-md p-2 rounded-md bg-label-bg">
               <div className="flex">
