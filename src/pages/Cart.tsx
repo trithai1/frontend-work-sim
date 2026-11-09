@@ -17,7 +17,7 @@ export function Cart() {
       <p className="text-sub-label mb-4">{`${cartQuantity} items`}</p>
       <div className="flex flex-col md:flex-row flex-1 [container-type:size]">
         {cart.length === 0 ?
-        <div className="md:flex-2 mr-0 md:mr-6 bg-white mb-4 md:mb-0">
+        <div className="md:flex-2 mr-0 md:mr-6 mb-4 md:mb-0">
           <EmptyState message={
             <div>
               <p className="mt-10 m-1 text-5xl">🛒</p>
