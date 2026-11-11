@@ -12,7 +12,7 @@ export function Navbar() {
   const cartIsActive = useMatch("/cart");
   
   return (
-    <div className="sticky top-0 shadow-md flex justify-between px-5 py-3 bg-label-bg/92 z-90">
+    <div className="sticky top-0 shadow-md flex justify-between px-5 py-3 bg-label-bg/92 z-40">
       <NavLink to="/" className="text-2xl font-bold text-brand-green" end>🍀 SummitGear Market</NavLink>
       <div className="flex items-center gap-4">
         <NavLink to="/" className={({ isActive }) => isActive ? "text-link-selected": "text-main-label"} end>Shop</NavLink>
