@@ -20,13 +20,13 @@ type CheckoutState = {
   setShipping: (info: ShippingInfo) => void;
   
   paymentInfo: PaymentInfo | null;
-  setPaymentInfo: (info: PaymentInfo) => void;
+  setPayment: (info: PaymentInfo) => void;
 };
 
 export const useCheckoutStore = create<CheckoutState>()(set => ({
   shippingInfo: null,
-  setShipping: info => {},
+  setShipping: info => set({shippingInfo: info}),
 
   paymentInfo: null,
-  setPaymentInfo: info => {},
+  setPayment: info => set({paymentInfo: info}),
 }));
