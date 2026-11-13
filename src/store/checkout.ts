@@ -2,31 +2,49 @@ import { create } from "zustand";
 
 
 type PaymentInfo = {
-  name: string
-  cardNumber: string;
-  expiration: string;
-  cvv: string;
+  name: string | null;
+  cardNumber: string | null;
+  expiration: string | null;
+  cvv: string | null;
 };
 
 type ShippingInfo = {
-  fullName: string;
-  address: string;
-  city: string;
-  zip: string;
+  fullName: string | null;
+  address: string | null;
+  city: string | null;
+  zip: string | null;
 };
 
 type CheckoutState = {
-  shippingInfo: ShippingInfo | null;
-  setShipping: (info: ShippingInfo) => void;
+  shippingInfo: ShippingInfo;
+  setShipping: (info: ShippingInfo) => boolean;
   
-  paymentInfo: PaymentInfo | null;
-  setPayment: (info: PaymentInfo) => void;
+  paymentInfo: PaymentInfo;
+  setPayment: (info: PaymentInfo) => boolean;
 };
 
 export const useCheckoutStore = create<CheckoutState>()(set => ({
-  shippingInfo: null,
-  setShipping: info => set({shippingInfo: info}),
+  shippingInfo: {
+    fullName: null,
+    address: null,
+    city: null,
+    zip: null,
+  },
+  setShipping: info => {
+    set({shippingInfo: info});
+    return !Object.values(info).includes(null);
+  },
 
-  paymentInfo: null,
-  setPayment: info => set({paymentInfo: info}),
+  paymentInfo: {
+    name: null,
+    cardNumber: null,
+    expiration: null,
+    cvv: null,
+  },
+  setPayment: info => {
+    info.cvv = info.cvv !== null && info.cvv.length === 3 && isFinite(Number(info.cvv)) ? info.cvv : null;
+    info.cardNumber = info.cardNumber !== null && info.cardNumber.length === 16 && isFinite(Number(info.cardNumber)) ? info.cardNumber : null;
+    set({paymentInfo: info});
+    return !Object.values(info).includes(null);
+  },
 }));
