@@ -12,6 +12,7 @@ import { useCartStore } from "./store/cart";
 import { ProductPage } from "./pages/Product";
 import { Page404 } from "./pages/Page404";
 import { Checkout } from "./pages/Checkout";
+import { Confirmation } from "./pages/Confirmation";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path="/products/:id" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/order-confirmation" element={<Confirmation />} />
 
         <Route path="*" element={<Page404 />} />
       </Route>

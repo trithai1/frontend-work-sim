@@ -21,6 +21,8 @@ type CheckoutState = {
   
   paymentInfo: PaymentInfo;
   setPayment: (info: PaymentInfo) => boolean;
+
+  clearCheckoutInfo: () => void;
 };
 
 export const useCheckoutStore = create<CheckoutState>()(set => ({
@@ -46,5 +48,23 @@ export const useCheckoutStore = create<CheckoutState>()(set => ({
     info.cardNumber = info.cardNumber !== null && info.cardNumber.length === 16 && isFinite(Number(info.cardNumber)) ? info.cardNumber : null;
     set({paymentInfo: info});
     return !Object.values(info).includes(null);
+  },
+
+  clearCheckoutInfo: () => {
+    const clearShipping = {
+      fullName: null,
+      address: null,
+      city: null,
+      zip: null,
+    };
+
+    const clearPayment = {
+      name: null,
+      cardNumber: null,
+      expiration: null,
+      cvv: null,
+    };
+
+    set({shippingInfo: clearShipping, paymentInfo: clearPayment});
   },
 }));

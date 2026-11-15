@@ -42,17 +42,17 @@ function ShippingSection({setSection}: {setSection: Dispatch<React.SetStateActio
           <form className="flex flex-col bg-label-bg p-2 rounded-lg flex-2" onSubmit={handleShipping}>
             <p className="text-main-label font-bold text-xl mb-2">Shipping address</p>
             <p className="text-main-label font-bold">Full name</p>
-            <input type="text" name="fullName" placeholder="Full name" className="py-1.5 px-2 placeholder:text-sub-label border-1 border-gray-300 rounded-md mb-4" defaultValue={shippingInfo.fullName ?? ""} required/>
+            <input type="text" name="fullName" placeholder="Full name" className="text-main-label py-1.5 px-2 placeholder:text-sub-label border-1 border-gray-300 rounded-md mb-4" defaultValue={shippingInfo.fullName ?? ""} required/>
             <p className="text-main-label font-bold">Address</p>
-            <input type="text" name="address" placeholder="Address" className="py-1.5 px-2 placeholder:text-sub-label border-1 border-gray-300 rounded-md mb-4" defaultValue={shippingInfo.address ?? ""} required/>
+            <input type="text" name="address" placeholder="Address" className="text-main-label py-1.5 px-2 placeholder:text-sub-label border-1 border-gray-300 rounded-md mb-4" defaultValue={shippingInfo.address ?? ""} required/>
             <div className="flex gap-4 mb-4">
               <div className="flex-1">
                 <p className="text-main-label font-bold">City</p>
-                <input type="text" name="city" placeholder="City" className="py-1.5 px-2 placeholder:text-sub-label w-full border-1 border-gray-300 rounded-md" defaultValue={shippingInfo.city ?? ""} required/>
+                <input type="text" name="city" placeholder="City" className="text-main-label py-1.5 px-2 placeholder:text-sub-label w-full border-1 border-gray-300 rounded-md" defaultValue={shippingInfo.city ?? ""} required/>
               </div>
               <div className="flex-1">
                 <p className="text-main-label font-bold">ZIP</p>
-                <input type="text" name="zip" placeholder="ZIP" className="py-1.5 px-2 placeholder:text-sub-label w-full border-1 border-gray-300 rounded-md" defaultValue={shippingInfo.zip ?? ""} required/>
+                <input type="text" name="zip" placeholder="ZIP" className="text-main-label py-1.5 px-2 placeholder:text-sub-label w-full border-1 border-gray-300 rounded-md" defaultValue={shippingInfo.zip ?? ""} required/>
               </div>
             </div>
             <div className="flex justify-between mt-auto">
@@ -61,7 +61,7 @@ function ShippingSection({setSection}: {setSection: Dispatch<React.SetStateActio
             </div>
           </form>
           <div className="max-h-[100cqh] flex-1 flex flex-col bg-label-bg p-2 rounded-lg">
-            <p className="font-bold text-lg mb-2">Order summary</p>
+            <p className="font-bold text-lg mb-2 text-main-label">Order summary</p>
             {cart.length === 0 ?
             <div className="mx-5 my-8">
               <EmptyState message={
@@ -72,7 +72,7 @@ function ShippingSection({setSection}: {setSection: Dispatch<React.SetStateActio
                 </div>
               }/>
             </div> :
-            <ul className="flex-1 min-h-0 flex flex-col gap-2 overflow-y-auto font-bold rounded-b-md mb-6">
+            <ul className="flex-1 flex flex-col gap-2 overflow-y-auto font-bold rounded-b-md mb-6 shadow-md">
               {cart.map(item => (
                 <li key={item.product.id} className="flex justify-between shadow-md p-2 rounded-b-md bg-label-bg">
                   <div className="flex">
@@ -94,7 +94,7 @@ function ShippingSection({setSection}: {setSection: Dispatch<React.SetStateActio
                 </li>
               ))}
             </ul>}
-            <div className="flex justify-between">
+            <div className="flex justify-between text-main-label">
               <p className="font-bold">Total</p>
               <p className="font-bold">${subtotal}</p>
             </div>
@@ -147,14 +147,14 @@ function PaymentSection({setSection}: {setSection: Dispatch<React.SetStateAction
             <p className="text-main-label font-bold text-xl mb-2">Payment</p>
             {showErr && <p className="text-red-700 font-bold bg-red-100 p-2 rounded-md mb-2 border-1 border-red-200">Please fix the highlighted fields.</p>}
             <p className="text-main-label font-bold">Name on card</p>
-            <input type="text" name="name" placeholder="Name on card" className="py-1.5 px-2 placeholder:text-sub-label border-1 border-gray-300 rounded-md mb-4" defaultValue={paymentInfo.name ?? ""} required/>
+            <input type="text" name="name" placeholder="Name on card" className="text-main-label py-1.5 px-2 placeholder:text-sub-label border-1 border-gray-300 rounded-md mb-4" defaultValue={paymentInfo.name ?? ""} required/>
             <p className="text-main-label font-bold">Card number</p>
-            <input type="text" name="cardNumber" placeholder="Card number" className={`py-1.5 px-2 placeholder:text-sub-label border-1 border-gray-300 rounded-md ${showErr && paymentInfo.cardNumber === null ? "bg-red-100 border-red-500" : "mb-4" }`} defaultValue={paymentInfo.cardNumber ?? ""} required/>
+            <input type="text" name="cardNumber" placeholder="Card number" className={`text-main-label py-1.5 px-2 placeholder:text-sub-label border-1 border-gray-300 rounded-md ${showErr && paymentInfo.cardNumber === null ? "bg-red-100 border-red-500" : "mb-4" }`} defaultValue={paymentInfo.cardNumber ?? ""} required/>
             {showErr && paymentInfo.cardNumber === null && <p className="text-red-700 font-bold mb-4">Card number must be 16 digits</p>}
             <p className="text-main-label font-bold">Expiry</p>
-            <input type="text" name="expiration" placeholder="Expiry" className="py-1.5 px-2 placeholder:text-sub-label w-full border-1 border-gray-300 rounded-md mb-4" defaultValue={paymentInfo.expiration ?? ""} required/>
+            <input type="text" name="expiration" placeholder="Expiry" className="text-main-label py-1.5 px-2 placeholder:text-sub-label w-full border-1 border-gray-300 rounded-md mb-4" defaultValue={paymentInfo.expiration ?? ""} required/>
             <p className="text-main-label font-bold">CVV</p>
-            <input type="text" name="cvv" placeholder="CVV" className={`py-1.5 px-2 placeholder:text-sub-label w-full border-1 border-gray-300 rounded-md ${showErr && paymentInfo.cvv === null ? "bg-red-100 border-red-500" : "mb-4"}`} defaultValue={paymentInfo.cvv ?? ""} required/>
+            <input type="text" name="cvv" placeholder="CVV" className={`text-main-label py-1.5 px-2 placeholder:text-sub-label w-full border-1 border-gray-300 rounded-md ${showErr && paymentInfo.cvv === null ? "bg-red-100 border-red-500" : "mb-4"}`} defaultValue={paymentInfo.cvv ?? ""} required/>
             {showErr && paymentInfo.cvv === null && <p className="text-red-700 font-bold mb-4">CVV must be 3 digits</p>}
             <div className="flex justify-between mt-auto">
               <button type="button" className="bg-label-bg text-main-label border-1 border-sub-label rounded-md py-2 px-3" onClick={() => setSection("shipping")}>←Back</button>
@@ -162,7 +162,7 @@ function PaymentSection({setSection}: {setSection: Dispatch<React.SetStateAction
             </div>
           </form>
           <div className="max-h-[100cqh] flex-1 flex flex-col bg-label-bg p-2 rounded-lg">
-            <p className="font-bold text-lg mb-2">Order summary</p>
+            <p className="font-bold text-lg mb-2 text-main-label">Order summary</p>
             {cart.length === 0 ?
             <div className="mx-5 my-8">
               <EmptyState message={
@@ -173,7 +173,7 @@ function PaymentSection({setSection}: {setSection: Dispatch<React.SetStateAction
                 </div>
               }/>
             </div> :
-            <ul className="flex-1 min-h-0 flex flex-col gap-2 overflow-y-auto font-bold rounded-b-md mb-6">
+            <ul className="flex-1 flex flex-col gap-2 overflow-y-auto font-bold rounded-b-md mb-6 shadow-md">
               {cart.map(item => (
                 <li key={item.product.id} className="flex justify-between shadow-md p-2 rounded-b-md bg-label-bg">
                   <div className="flex">
@@ -195,7 +195,7 @@ function PaymentSection({setSection}: {setSection: Dispatch<React.SetStateAction
                 </li>
               ))}
             </ul>}
-            <div className="flex justify-between">
+            <div className="flex justify-between text-main-label">
               <p className="font-bold">Total</p>
               <p className="font-bold">${subtotal}</p>
             </div>
@@ -206,16 +206,32 @@ function PaymentSection({setSection}: {setSection: Dispatch<React.SetStateAction
   );
 }
 
+function generateCode() {
+  const letters = Array.from({ length: 3 }, () =>
+    String.fromCharCode(65 + Math.floor(Math.random() * 26))
+  ).join("");
+
+  const numbers = Math.floor(Math.random() * 100_000)
+    .toString()
+    .padStart(5, '0');
+
+  return `${letters}-${numbers}`;
+}
+
 function ReviewSection({setSection}: {setSection: Dispatch<React.SetStateAction<SectionState>>}) {
   const { cart, setCartHidden, addToCart, subtractFromCart, removeFromCart } = useCartStore();
   const subtotal = cart.reduce((acc, item) => acc += item.product.price * item.quantity, 0).toFixed(2);
   useEffect(() => setCartHidden(true), []);
 
-  const { shippingInfo, paymentInfo } = useCheckoutStore();
+  const { shippingInfo, paymentInfo, clearCheckoutInfo } = useCheckoutStore();
   const navigate = useNavigate();
 
   function handleOrder() {
-    navigate("/confirmation");
+    const confirmationCode = generateCode();
+    // clearCheckoutInfo();
+    const cartOrder = structuredClone(cart);
+    // cart.forEach(item => removeFromCart(item.product));
+    navigate("/order-confirmation", { state: {cart: cartOrder, confirmationCode} });
   }
 
   return (
@@ -232,7 +248,7 @@ function ReviewSection({setSection}: {setSection: Dispatch<React.SetStateAction<
       <div className="flex-1 [container-type:size]">
         <div className="flex flex-col gap-6 lg:flex-row">
           <div className="max-h-[100cqh] flex-6 flex flex-col bg-label-bg p-2 rounded-lg">
-            <p className="font-bold text-lg mb-2">Order summary</p>
+            <p className="font-bold text-lg mb-2 text-main-label">Order summary</p>
             {cart.length === 0 ?
             <div className="mx-5 my-8">
               <EmptyState message={
@@ -243,7 +259,7 @@ function ReviewSection({setSection}: {setSection: Dispatch<React.SetStateAction<
                 </div>
               }/>
             </div> :
-            <ul className="flex-1 min-h-0 flex flex-col gap-2 overflow-y-auto font-bold rounded-b-md mb-6">
+            <ul className="flex-1 flex flex-col gap-2 overflow-y-auto font-bold rounded-b-md mb-6 shadow-md">
               {cart.map(item => (
                 <li key={item.product.id} className="flex justify-between shadow-md p-2 rounded-b-md bg-label-bg">
                   <div className="flex">
@@ -265,7 +281,7 @@ function ReviewSection({setSection}: {setSection: Dispatch<React.SetStateAction<
                 </li>
               ))}
             </ul>}
-            <div className="flex justify-between">
+            <div className="flex justify-between text-main-label">
               <p className="font-bold">Total</p>
               <p className="font-bold">${subtotal}</p>
             </div>
