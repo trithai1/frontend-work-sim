@@ -228,9 +228,9 @@ function ReviewSection({setSection}: {setSection: Dispatch<React.SetStateAction<
 
   function handleOrder() {
     const confirmationCode = generateCode();
-    // clearCheckoutInfo();
+    clearCheckoutInfo();
     const cartOrder = structuredClone(cart);
-    // cart.forEach(item => removeFromCart(item.product));
+    cart.forEach(item => removeFromCart(item.product));
     navigate("/order-confirmation", { state: {cart: cartOrder, confirmationCode} });
   }
 
