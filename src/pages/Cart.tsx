@@ -1,6 +1,7 @@
 import { EmptyState } from "../components/EmptyState";
 import { useCartStore } from "../store/cart";
 import { useEffect } from "react";
+import { NavLink } from "react-router";
 
 
 export function Cart() {
@@ -11,12 +12,12 @@ export function Cart() {
   const subtotal = cart.reduce((acc, item) => acc += item.product.price * item.quantity, 0).toFixed(2);
 
   return(
-    <div className="flex flex-col">
+    <div className="flex flex-col flex-1">
       <p className="text-main-label font-bold text-3xl">Your cart</p>
       <p className="text-sub-label mb-4">{`${cartQuantity} items`}</p>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row flex-1 [container-type:size]">
         {cart.length === 0 ?
-        <div className="md:flex-2 mr-0 md:mr-6 bg-white mb-4 md:mb-0">
+        <div className="md:flex-2 mr-0 md:mr-6 mb-4 md:mb-0">
           <EmptyState message={
             <div>
               <p className="mt-10 m-1 text-5xl">🛒</p>
@@ -25,7 +26,7 @@ export function Cart() {
             </div>
           }/>
         </div> :
-        <ul className="overflow-y-auto bg-page-bg h-full shadow-md font-bold rounded-md flex flex-col gap-4 md:flex-2 mr-0 md:mr-6 bg-white mb-4 md:mb-0">
+        <ul className="max-h-[100cqh] flex-1 overflow-y-auto bg-page-bg font-bold rounded-md flex flex-col gap-2 md:flex-2 mr-0 md:mr-6 mb-4 md:mb-0">
           {cart.map(item => (
             <li key={item.product.id} className="flex justify-between shadow-md p-2 rounded-md bg-label-bg">
               <div className="flex">
@@ -47,12 +48,15 @@ export function Cart() {
             </li>
           ))}
         </ul>}
-        <div className="flex flex-col shadow-md mb-auto p-4 bg-product-bg md:flex-1 rounded-md">
-          <div className="flex justify-between text-main-label font-bold">
-            <p>Subtotal</p>
-            <p>${subtotal}</p>
+        <div className="flex flex-col md:flex-1">
+          <div className="flex flex-col shadow-md mb-4 p-4 bg-product-bg rounded-md">
+            <div className="flex justify-between text-main-label font-bold">
+              <p>Subtotal</p>
+              <p>${subtotal}</p>
+            </div>
+            <p className="text-sub-label">Shipping & taxes calcuated at checkout</p>
           </div>
-          <p className="text-sub-label">Shipping & taxes calcuated at checkout</p>
+          <NavLink className="bg-brand-green text-white dark:text-black text-center rounded-md py-2 font-bold" to="/checkout" end>Checkout</NavLink>
         </div>
       </div>
     </div>

@@ -52,9 +52,12 @@ export function CartPanel() {
             </li>
           ))}
         </ul>}
-        <div className="flex justify-between shadow-md mt-auto p-4 bg-product-bg text-main-label font-bold">
-          <p>Subtotal</p>
-          <p>${subtotal}</p>
+        <div className="flex flex-col md:flex-1">
+          <div className="flex justify-between shadow-md mt-auto p-4 bg-product-bg text-main-label font-bold">
+            <p>Subtotal</p>
+            <p>${subtotal}</p>
+          </div>
+          <NavLink className="bg-brand-green text-white dark:text-black text-center rounded-t-md py-2 font-bold" to="/checkout" end>Checkout</NavLink>
         </div>
       </div>
     </div>
