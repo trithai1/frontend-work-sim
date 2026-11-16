@@ -27,7 +27,7 @@ export function Confirmation() {
                     <div className="flex">
                       <img className="w-25 h-auto bg-product-bg rounded-xl" src={item.product.thumbnail}></img>
                       <div className="p-2">
-                        <p className="text-main-label">{item.product.title}</p>
+                        <p className="text-main-label">{item.product.title} x {item.quantity}</p>
                         <p className="text-sub-label">${item.product.price} each</p>
                       </div>
                     </div>
