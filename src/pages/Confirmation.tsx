@@ -4,7 +4,7 @@ import type { CartItem } from "../types/cart";
 
 
 export function Confirmation() {
-  if (!useLocation().state?.cart || useLocation().state?.confirmationCode) {
+  if (!useLocation().state?.cart || !useLocation().state?.confirmationCode) {
     return <Navigate to="/" replace />
   }
 
@@ -28,7 +28,7 @@ export function Confirmation() {
                       <img className="w-25 h-auto bg-product-bg rounded-xl" src={item.product.thumbnail}></img>
                       <div className="p-2">
                         <p className="text-main-label">{item.product.title}</p>
-                        <p className="text-sub-label">${item.product.price} each{item.quantity === item.product.stock && <span className="text-brand-brown"> - max reached</span>}</p>
+                        <p className="text-sub-label">${item.product.price} each</p>
                       </div>
                     </div>
                     <div className="flex flex-col p-2 justify-center text-right">
