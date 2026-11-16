@@ -1,9 +1,13 @@
-import { useLocation } from "react-router";
+import { useLocation, Navigate } from "react-router";
 import { NavLink } from "react-router";
 import type { CartItem } from "../types/cart";
 
 
 export function Confirmation() {
+  if (!useLocation().state?.cart || useLocation().state?.confirmationCode) {
+    return <Navigate to="/" replace />
+  }
+
   const cart: CartItem[] = useLocation().state.cart;
   const confirmationCode = useLocation().state.confirmationCode;
   const subtotal = cart.reduce((acc, item) => acc += item.product.price * item.quantity, 0).toFixed(2);
